@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm Số Ngày Yêu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://mega.com.vn/media/news/2905_anh-nen-chill-anime-4K-danh-cho-may-tinh.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            overflow: hidden; /* Ngăn cuộn trang */
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            max-width: 90%;
+            z-index: 1; /* Đặt lớp này ở trên cùng */
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: #ff69b4;
+            font-size: 3em;
+            margin: 0 0 20px;
+        }
+        .avatars-with-heart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .avatar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+        .avatar-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+        .name {
+            font-family: 'Great Vibes', cursive;
+            color: #ff69b4;
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            position: relative;
+            font-weight: bold;
+            font-size: 75%;
+        }
+        .time-section {
+            font-size: 2em;
+            color: #87cefa;
+            margin: 0 10px;
+            perspective: 1000px;
+        }
+        .flip-card {
+            position: relative;
+            width: 80px;
+            height: 100px;
+            background-color: transparent;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #87cefa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+        }
+        .flip-card-back {
+            transform: rotateX(180deg);
+        }
+        .heart {
+            position: absolute;
+            font-size: 4em;
+            color: #ff69b4;
+            animation: beat 1s infinite;
+        }
+        @keyframes beat {
+            0%, 20%, 50%, 80%, 100% {
+                transform: scale(1);
+            }
+            40% {
+                transform: scale(1.2);
+            }
+            60% {
+                transform: scale(1.2);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .falling-flower {
+            position: absolute;
+            top: -10%;
+            width: 30px;
+            height: 30px;
+            background: url('https://path_to_flower_image.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.7;
+            animation: fall 10s linear infinite;
+        }
+        /* Điều chỉnh cho các kích thước màn hình nhỏ */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .avatar-img {
+                width: 80px;
+                height: 80px;
+            }
+            .name {
+                font-size: 1.2em;
+            }
+            .time-section {
+                font-size: 1.5em;
+                margin: 10px;
+            }
+            .flip-card {
+                width: 60px;
+                height: 80px;
+            }
+            .heart {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chúng mình đã yêu nhau được</h1>
+        <div class="avatars-with-heart">
+            <div class="avatar">
+                <img src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/431699203_3691717794480074_3782075669237226764_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEa37DZyyF7udfh0OvgqbnKn9PFkGKNhdef08WQYo2F13EXpZmnktovkuQwX_2e8iCaK3y15lwyhmxt8Lt33Q2-&_nc_ohc=gLropEepLUcQ7kNvgGcAS-W&_nc_ht=scontent.fsgn2-11.fna&oh=00_AYDMPCNGH2PGW7HzKmEeZnEz-uyuCOCCN_s4CJVanjXu4w&oe=66A425E0" alt="Avatar 1" class="avatar-img">
+                <div class="name">Phước Hải</div>
+            </div>
+            <div class="heart">❤️</div>
+            <div class="avatar">
+                <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/449335892_1206482613674609_9157925531564916003_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHUUUKtZZ_VWj9TtUbj6lmnWrMtgXzVmmBasy2BfNWaYGv1frc7I4ef0gR7r7NTyiiYSf32GV7mYmyc621g5EIO&_nc_ohc=W-gpLHQ7CCsQ7kNvgGir3-P&_nc_ht=scontent.fsgn2-6.fna&oh=00_AYA97Up4TEgPzPLKvEHHV-LEtP1BNvFbWXGeFDQjmyZjkA&oe=66A44589" alt="Avatar 2" class="avatar-img">
+                <div class="name">Thùy Linh</div>
+            </div>
+        </div>
+        <div class="timer">
+            <div class="time-section">
+                <div class="flip-card" id="days-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" id="days-front">0</div>
+                        <div class="flip-card-back" id="days-back">0</div>
+                    </div>
+                </div>
+                <div>ngày</div>
+            </div>
+            <div class="time-section">
+                <div class="flip-card" id="hours-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" id="hours-front">0</div>
+                        <div class="flip-card-back" id="hours-back">0</div>
+                    </div>
+                </div>
+                <div>giờ</div>
+            </div>
+            <div class="time-section">
+                <div class="flip-card" id="minutes-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" id="minutes-front">0</div>
+                        <div class="flip-card-back" id="minutes-back">0</div>
+                    </div>
+                </div>
+                <div>phút</div>
+            </div>
+            <div class="time-section">
+                <div class="flip-card" id="seconds-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" id="seconds-front">0</div>
+                        <div class="flip-card-back" id="seconds-back">0</div>
+                    </div>
+                </div>
+                <div>giây</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="falling-flowers">
+        <!-- Thêm nhiều div hoa với các vị trí khác nhau -->
+        <div class="falling-flower" style="left: 10%; animation-duration: 15s;"></div>
+        <div class="falling-flower" style="left: 30%; animation-duration: 12s;"></div>
+        <div class="falling-flower" style="left: 50%; animation-duration: 20s;"></div>
+        <div class="falling-flower" style="left: 70%; animation-duration: 18s;"></div>
+        <div class="falling-flower" style="left: 90%; animation-duration: 22s;"></div>
+    </div>
+
+    <script>
+        function updateTimer(startDate) {
+            const start = new Date(startDate).getTime();
+            const now = new Date().getTime();
+            const distance = now - start;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            flip('days', days);
+            flip('hours', hours);
+            flip('minutes', minutes);
+            flip('seconds', seconds);
+        }
+
+        function flip(id, value) {
+            const front = document.getElementById(`${id}-front`);
+            const back = document.getElementById(`${id}-back`);
+            const card = document.getElementById(`${id}-card`).querySelector('.flip-card-inner');
+
+            if (front.textContent != value) {
+                back.textContent = value;
+                card.style.transform = 'rotateX(180deg)';
+
+                setTimeout(() => {
+                    front.textContent = value;
+                    card.style.transform = 'rotateX(0deg)';
+                }, 600);
+            }
+        }
+
+        const startDate = '2024-07-19'; // Ngày bắt đầu yêu
+
+        // Cập nhật bộ đếm mỗi giây
+        setInterval(() => updateTimer(startDate), 1000);
+
+        // Khởi tạo bộ đếm ngay khi trang được tải
+        updateTimer(startDate);
+    </script>
+</body>
+</html>
