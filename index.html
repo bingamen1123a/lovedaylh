@@ -173,6 +173,28 @@
                 font-size: 3em;
             }
         }
+        .digital-clock {
+            font-size: 2em;
+            font-weight: bold;
+            color: #87cefa;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+            text-align: center; /* Căn giữa văn bản */
+        }
+        #clock-time {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        #clock-date {
+            font-size: 1.1rem;
+            color:#ff69b4;
+        }
     </style>
 </head>
 <body>
@@ -189,56 +211,53 @@
                 <div class="name">Thùy Linh</div>
             </div>
         </div>
+        <p>Ngày yêu:19-07-2024</p>
         <div class="timer">
-            <div class="time-section">
-                <div class="flip-card" id="days-card">
+            <div class="time-section" id="days-card">
+                <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front" id="days-front">0</div>
                         <div class="flip-card-back" id="days-back">0</div>
                     </div>
                 </div>
-                <div>ngày</div>
+                <div>Ngày</div>
             </div>
-            <div class="time-section">
-                <div class="flip-card" id="hours-card">
+            <div class="time-section" id="hours-card">
+                <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front" id="hours-front">0</div>
                         <div class="flip-card-back" id="hours-back">0</div>
                     </div>
                 </div>
-                <div>giờ</div>
+                <div>Giờ</div>
             </div>
-            <div class="time-section">
-                <div class="flip-card" id="minutes-card">
+            <div class="time-section" id="minutes-card">
+                <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front" id="minutes-front">0</div>
                         <div class="flip-card-back" id="minutes-back">0</div>
                     </div>
                 </div>
-                <div>phút</div>
+                <div>Phút</div>
             </div>
-            <div class="time-section">
-                <div class="flip-card" id="seconds-card">
+            <div class="time-section" id="seconds-card">
+                <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front" id="seconds-front">0</div>
                         <div class="flip-card-back" id="seconds-back">0</div>
                     </div>
                 </div>
-                <div>giây</div>
+                <div>Giây</div>
             </div>
         </div>
-        <p>Ngày yêu:19-07-2024</p>
+        <div class="digital-clock">
+            <div id="clock-time"></div>
+            <div id="clock-date"></div>
+        </div>
+        <div class="falling-flower" style="left: 20%; animation-delay: 0s;"></div>
+        <div class="falling-flower" style="left: 50%; animation-delay: 5s;"></div>
+        <div class="falling-flower" style="left: 80%; animation-delay: 10s;"></div>
     </div>
-
-    <div class="falling-flowers">
-        <!-- Thêm nhiều div hoa với các vị trí khác nhau -->
-        <div class="falling-flower" style="left: 10%; animation-duration: 15s;"></div>
-        <div class="falling-flower" style="left: 30%; animation-duration: 12s;"></div>
-        <div class="falling-flower" style="left: 50%; animation-duration: 20s;"></div>
-        <div class="falling-flower" style="left: 70%; animation-duration: 18s;"></div>
-        <div class="falling-flower" style="left: 90%; animation-duration: 22s;"></div>
-    </div>
-
     <script>
         function updateTimer(startDate) {
             const start = new Date(startDate).getTime();
@@ -272,13 +291,33 @@
             }
         }
 
+        function updateDigitalClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const dayNames = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+            const dayName = dayNames[now.getDay()];
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            
+            document.getElementById('clock-time').textContent = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock-date').textContent = `${dayName}, ${day}-${month}-${year}`;
+        }
+
         const startDate = '2024-07-19'; // Ngày bắt đầu yêu
 
         // Cập nhật bộ đếm mỗi giây
         setInterval(() => updateTimer(startDate), 1000);
 
-        // Khởi tạo bộ đếm ngay khi trang được tải
+        // Cập nhật đồng hồ kỹ thuật số mỗi giây
+        setInterval(updateDigitalClock, 1000);
+
+        // Khởi tạo bộ đếm và đồng hồ kỹ thuật số ngay khi trang được tải
         updateTimer(startDate);
+        updateDigitalClock();
     </script>
 </body>
 </html>
